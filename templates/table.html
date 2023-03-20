@@ -1,0 +1,33 @@
+<div class="container mt-3">
+<div class="table">
+<table class="table table-hover table table-bordered border-primary ">
+    <thead class="bg-info text-black">
+      <tr>
+        
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Age</th>
+        <th scope="col">Bloodgroup</th>
+        <th scope="col">Date</th>
+        <th scope="col">DateDiff</th>
+        <th scope="colspan=2">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for x in modela %}
+      <tr class="table-primary">
+       
+        <td>{{x.Fname}}</td>
+        <td>{{x.Lname}}</td>
+        <td>{{x.Age}}</td>
+        <td>{{x.Bloodgroup}}</td>
+        <td>{{x.Date}}</td>
+        <td>{{x.datediff}}</td>
+        <td> <a href="/delete/{{x.id}}"><button>Delete</button></a><a href="/update/{{x.id}}"><button>Update</button></td>
+
+    </tr>
+      {% endfor %}
+    </tbody>
+  </div>
+</div>    
+  </table>
