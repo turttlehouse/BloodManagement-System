@@ -5,9 +5,11 @@ from django.db.models import Q
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.http import JsonResponse
+from .serializers import bloodserializer
 
 # Create your views here.
-def loginuser(request):
+'''def loginuser(request):
     if request.method=='POST':
         username = request.POST['name']
         password = request.POST['pp']
@@ -60,9 +62,9 @@ def choose(request,dog):
         return redirect('/')
     return render(request,'index.html',{'model':model,'modela':modela})
 
-def check(request):
-    model=blood.objects.filter(Q(datediff="Available"))
-    return render(request,'index.html',{'model':model})
+# def check(request):
+#     model=blood.objects.filter(Q(datediff="Available"))
+#     return render(request,'index.html',{'model':model})
 
 def search(request):
     if request.method=="GET":
@@ -72,7 +74,7 @@ def search(request):
   
   
   
-'''  
+
 def signupuser(request):
     modulo=myform()
     modella=signupform.objects.all()
@@ -81,7 +83,7 @@ def signupuser(request):
         if fm.is_valid():
             fm.save()
         return redirect('/')
-    return render(request,'signupform.html',{'modulo':modulo})'''
+    return render(request,'signupform.html',{'modulo':modulo})
     
 def signupuser(request):
     form=createuserform(request.POST)
@@ -93,8 +95,20 @@ def signupuser(request):
     
     return render(request,'signupform.html',{'form':form})
 
-       
+def check(request):
+    x=blood.objects.all()
+    modela=[y for y in x if y.availability()=="Available"]
+    model=addmyform()
+    if request.method=="POST":
+        form=addmyform(request.POST)
+        form.save()
+        return redirect("/home")
+    return render(request,'index.html',{'model':model,'modela':modela})'''
 
+def list(request):
+    model=blood.objects.all()
+    serializer=bloodserializer(model,many=True)      
+    return JsonResponse(serializer.data,safe=False)
 
 
 

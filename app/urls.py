@@ -13,7 +13,7 @@ from .import views
 ]
 '''
 
-urlpatterns = [
+'''urlpatterns = [
     path('',views.loginuser,name='login'),
     path('logoutuser/',views.logoutuser),
     path('home/',views.home),
@@ -23,4 +23,7 @@ urlpatterns = [
     path('check/',views.check),
     path('search/',views.search,name="searchbar"),
     path('signupuser/',views.signupuser)
+]'''
+urlpatterns = [
+    path('',views.list),
 ]

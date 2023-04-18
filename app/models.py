@@ -14,11 +14,11 @@ class blood(models.Model):
     ]
     Bloodgroup=models.CharField(choices=Bloodgroupchoices,max_length=25,null=True)
     Date=models.DateField(null=True)
-    @property
+    
     def _str_(self):
         return self.Name  
 
-    def getdate(self):
+    '''def getdate(self):
         end = date.today()
         start = self.Date
         res = (end.year - start.year) * 12 + (end.month - start.month)+(end.day-start.day)/30
@@ -28,7 +28,7 @@ class blood(models.Model):
         else:
             return "Not available"
 
-    datediff=property(getdate)
+    datediff=property(getdate)'''
     
     '''
     
@@ -41,3 +41,9 @@ def _str_(self):
         return self.Name     
     
   '''     
+    '''def availability(self):
+        hello=(date.today()-self.Date).days
+        if(hello>=90):
+            return "Available"
+        else:
+            return "Not Available"'''
